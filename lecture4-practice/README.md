@@ -19,7 +19,7 @@ mconcat :: Monoid m => [m] -> m
 foldMap :: (Foldable f, Monoid m) => (a -> m) -> f a -> m
 ```
 
-### Задани 4
+### Задание 4
 Реализуйте инстанс `Foldable` для `[a]` через
 ```haskell
 foldMap :: (Foldable f, Monoid m) => (a -> m) -> t a -> m
