@@ -22,10 +22,10 @@ foldMap :: (Foldable f, Monoid m) => (a -> m) -> f a -> m
 ### Задание 4
 Реализуйте инстанс `Foldable` для `[a]` через
 ```haskell
-foldMap :: (Foldable f, Monoid m) => (a -> m) -> t a -> m
+foldMap :: (Foldable f, Monoid m) => (a -> m) -> f a -> m
 ```
 
-### Задани 5
+### Задание 5
 Реализуйте инстанс `Foldable` для 
 ```haskell
 data Tree a 
