@@ -2,6 +2,7 @@ module Parser where
 
 import qualified Data.Set as S
 import Control.Applicative (liftA2, Alternative (..))
+import Control.Monad (replicateM)
 import Data.List.NonEmpty (NonEmpty (..))
 
 first :: (a -> c) -> (a, b) -> (c, b)
@@ -19,11 +20,16 @@ instance Applicative Parser where
 -- Rewrite (<*>) for Parser below with use
 -- of `Monad Maybe`.
 
-    Parser pf <*> Parser pa = Parser $ \s -> case pf s of
-        Nothing     -> Nothing
-        Just (f, t) -> case pa t of
-            Nothing     -> Nothing
-            Just (a, r) -> Just (f a, r)
+    -- Parser pf <*> Parser pa = Parser $ \s -> case pf s of
+    --     Nothing     -> Nothing
+    --     Just (f, t) -> case pa t of
+    --         Nothing     -> Nothing
+    --         Just (a, r) -> Just (f a, r)
+
+    Parser pf <*> Parser pa = Parser $ \s -> do
+      (f, t) <- pf s
+      (a, r) <- pa t
+      pure (f a, r)
 
 ---------------------------------------
 -- Grammar 1
@@ -102,7 +108,14 @@ neIntList =
 -- Do not use methods of `Monad Parser`!
 
 intList :: Parser [Int]
-intList = error "not implemented yet"
+intList = (char '[' *>) $
+        ([] <$ char ']')
+    <|> (liftA2 (:) int (many (char ',' *> int)) <* char ']')
+
+instance Alternative Parser where
+  empty = Parser $ const Nothing
+  (Parser pa) <|> (Parser pb) = Parser $ \s -> pa s <|> pb s
+
 
 ---------------------------------------
 -- Grammar 3
@@ -131,5 +144,27 @@ intList = error "not implemented yet"
 -- Implement `instance Monad Parser` and use it
 -- to implement Grammar 3.
 
+anyChar :: Parser Char
+anyChar = Parser $ \s ->
+  case s of
+    c : rest -> Just (c, rest)
+    _ -> Nothing
+
+instance Monad Parser where
+  return = pure
+  (Parser p) >>= qf = Parser $ \s -> do
+    (r, t) <- p s
+    runP (qf r) t
+
+intNoLeadingZero :: Parser Int
+intNoLeadingZero =
+    (char '0' *> pure 0)
+    <|> (read <$> liftA2 (:) numChar (many numChar))
+  where
+    numChar = someChar $ S.fromList "0123456789"
+
 stringLists :: Parser [String]
-stringLists = error "not implemented yet"
+stringLists = many $ intNoLeadingZero >>= readChars
+  where
+    readChars 0 = pure ""
+    readChars i = char ':' *> replicateM i anyChar
