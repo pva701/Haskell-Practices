@@ -1,0 +1,25 @@
+name:                lecture6-practice
+version:             0.1.0.0
+synopsis:            Synopsis for practice 6
+description:         Practice for 5th lecture
+
+homepage:            https://github.com/pva701/Haskell-Practice/tree/master/lecture6-practice#readme
+license:             MIT
+license-file:        LICENSE
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2019 Author name here
+
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+tested-with:         GHC == 8.0.1
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Task1
+  ghc-options:         -Wall
+  build-depends:       base >= 4.9 && < 5
+                     , split
+  default-language:    Haskell2010

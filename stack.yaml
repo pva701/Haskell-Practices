@@ -35,6 +35,7 @@ resolver: lts-13.3
 #  - wai
 packages:
 - lecture4-practice
+- lecture6-practice
 # Dependency packages to be pulled from upstream that are not in the resolver
 # using the same syntax as the packages field.
 # (e.g., acme-missiles-0.3)
