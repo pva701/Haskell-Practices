@@ -1,7 +1,7 @@
 name:                lecture6-practice
 version:             0.1.0.0
 synopsis:            Synopsis for practice 6
-description:         Practice for 5th lecture
+description:         Practice for 6th lecture
 
 homepage:            https://github.com/pva701/Haskell-Practice/tree/master/lecture6-practice#readme
 license:             MIT
@@ -19,7 +19,22 @@ tested-with:         GHC == 8.0.1
 library
   hs-source-dirs:      src
   exposed-modules:     Task1
+                     , Task2
+                     , Task3
+                     , Task4
+                     , Task5
   ghc-options:         -Wall
   build-depends:       base >= 4.9 && < 5
-                     , split
+                     , text
+                     , directory
+                     , array
+                     , HTTP
+                     , random
   default-language:    Haskell2010
+
+executable lecture6
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , lecture6-practice
