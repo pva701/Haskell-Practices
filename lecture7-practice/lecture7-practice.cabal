@@ -16,6 +16,14 @@ extra-source-files:  README.md
 cabal-version:       >=1.10
 tested-with:         GHC == 8.0.1
 
+library
+  hs-source-dirs:      src
+  exposed-modules:     Task0
+  ghc-options:         -Wall
+  build-depends:       base >= 4.9 && < 5
+                     , mtl
+  default-language:    Haskell2010
+
 executable lecture7-task1
   hs-source-dirs:      src
   main-is:             Task1.hs
