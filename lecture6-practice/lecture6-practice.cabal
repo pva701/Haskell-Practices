@@ -21,7 +21,6 @@ library
   exposed-modules:     Task1
                      , Task2
                      , Task3
-                     , Task4
                      , Task5
   ghc-options:         -Wall
   build-depends:       base >= 4.9 && < 5

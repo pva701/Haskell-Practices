@@ -1,0 +1,36 @@
+name:                lecture7-practice
+version:             0.1.0.0
+synopsis:            Synopsis for practice 7
+description:         Practice for 6th lecture
+
+homepage:            https://github.com/pva701/Haskell-Practice/tree/master/lecture7-practice#readme
+license:             MIT
+license-file:        LICENSE
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2019 Author name here
+
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+tested-with:         GHC == 8.0.1
+
+executable lecture7-task1
+  hs-source-dirs:      src
+  main-is:             Task1.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , exceptions
+                     , transformers
+                     , mtl
+
+executable lecture7-task2
+  hs-source-dirs:      src
+  main-is:             Task2.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , exceptions
+                     , transformers
+                     , containers
+                     , mtl
