@@ -62,4 +62,11 @@ evalExpr' expr = do
   either throwError pure $ evalExpr expr (as <> as')
 
 runTemplateDo :: Template -> TemplateDoM ()
-runTemplateDo = error "TODO implement"
+-- runTemplateDo = error "TODO implement"
+runTemplateDo (Assign v expr) = do
+  res <- evalExpr' expr
+  modify (M.insert v res)
+runTemplateDo (With v expr t) = do
+  res <- evalExpr' expr
+  local (M.insert v res) (runTemplateDo t)
+runTemplateDo (Seq p q) = runTemplateDo p >> runTemplateDo q
