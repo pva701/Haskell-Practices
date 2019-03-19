@@ -70,3 +70,6 @@ runTemplateDo (With v expr t) = do
   res <- evalExpr' expr
   local (M.insert v res) (runTemplateDo t)
 runTemplateDo (Seq p q) = runTemplateDo p >> runTemplateDo q
+
+main :: IO ()
+main = putStrLn "See code"

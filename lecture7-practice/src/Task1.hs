@@ -25,4 +25,3 @@ stackApp = do
 
 handleCommand :: Command -> ReaderT [Int] IO [Int]
 handleCommand = error "TODO implement me"
-
