@@ -23,6 +23,7 @@ library
                      , Task3
                      , Task4
                      , Task5
+                     , Task6
   ghc-options:         -Wall
   build-depends:       base >= 4.9 && < 5
                      , deepseq
