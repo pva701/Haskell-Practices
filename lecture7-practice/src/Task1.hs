@@ -24,4 +24,15 @@ stackApp = do
         handleCommand $ readMaybe cmd
 
 handleCommand :: Command -> ReaderT [Int] IO [Int]
-handleCommand = error "TODO implement me"
+handleCommand Pop = do
+  st <- ask
+  when (null st) $ throwM UnexpectedStack
+  local tail stackApp
+handleCommand Add = do
+  st <- ask
+  case st of
+    a : b : rest ->
+      local (const $ a + b : rest) stackApp
+    _ -> throwM UnexpectedStack
+handleCommand (Push i) = local (i :) stackApp
+handleCommand Exit = ask
