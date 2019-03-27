@@ -5,13 +5,14 @@ stdenv.mkDerivation {
   name = "lecture9";
 
   shellHook = ''
-    ghci Test.hs
+    ghci
   '';
 
   buildInputs = [
     (haskellPackages.ghcWithPackages (pkgs: with pkgs; [
       random
       async
+      parallel
     ]) )
   ];
 }
