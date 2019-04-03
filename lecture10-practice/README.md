@@ -33,7 +33,7 @@ atom = Atom "C" (Point 3 4)
 Затем создайте atom у которого `x` координата увеличена на 1. 
 Сделайте это двумя способами: используйте функцию `over` и `%~` вместе с `&`.
 
-Затем определите `atomX :: Lens' Atom Double` и `atomY :: Lens' Atom Double`.
+Затем определите `atomX :: Lens' Atom Int` и `atomY :: Lens' Atom Int`.
 
 Затем определите функцию
 ```haskell
