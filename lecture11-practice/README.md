@@ -33,3 +33,17 @@ class ArithExpr expr where
 ```
 
 Update interpreter and show according to updated DSL.
+
+## Task three
+
+Consider Tagless final-based DSL `ArithExpr` from lecture slides.
+
+Remove `aeNum`, `aePlus` constructor and use `Num` instance following way.
+
+```
+class Num (expr Int) => ArithExpr expr where
+  aeAnd  :: expr Bool -> expr Bool -> expr Bool
+  aeGt   :: expr Int -> expr Int -> expr Bool
+```
+
+Update interpreter and show according to updated DSL.
