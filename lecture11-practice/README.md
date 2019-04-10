@@ -50,6 +50,8 @@ class Num (expr Int) => ArithExpr expr where
 
 Update interpreter and show according to updated DSL.
 
+Solution by Evgeniy Glukhov: https://gist.github.com/AntiFrizz1/dfdd93e1173544bb068cdac005bf5e77.
+
 ## Task four
 
 (Super easy)
