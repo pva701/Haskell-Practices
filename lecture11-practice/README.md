@@ -15,6 +15,8 @@ data ArithExpr a where
   AEGt   :: ArithExpr Int -> ArithExpr Int -> ArithExpr Bool
 ```
 
+Solution by Ilya Kokorin: https://gist.github.com/KokorinIlya/a80f01062b8ab824f76333c40dae7b65.
+
 ## Task two
 
 Consider Tagless final-based DSL `ArithExpr` from lecture slides.
