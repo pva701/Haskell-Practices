@@ -61,3 +61,24 @@ applyTwo :: ([Int], [Bool])
 applyTwo = let call f = (f [2, 1, 3], f [True, False])
             in call reverse
 ```
+
+Solution by Lev Dovjik: https://pastebin.com/84iy8XQi.
+
+## Task five
+
+Take single-threaded monte-carlo-based integral evaluation from lecture 9 practice.
+
+Rewrite DSL from lecture to use `Double` instead of `Int`.
+
+Update tagless final DSL with constructors for `cos (x)`, random generation (in range `[0..1]`),
+and `a * b` and `mean` function.
+
+Mean function should have signature `mean :: Int -> expr Int -> expr Int` and
+`mean n calc` shall repeat expression `calc` (which internally has random coin)
+`n` times.
+
+Implement expression `myExpr` to calculate integral of `cos^3 (x)` in range `[0.3..0.8]`.
+
+Compare performance of bare Haskell implementation and `interpret myExpr` on large repetetion numbers.
+
+
