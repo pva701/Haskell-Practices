@@ -47,3 +47,15 @@ class Num (expr Int) => ArithExpr expr where
 ```
 
 Update interpreter and show according to updated DSL.
+
+## Task four
+
+(Super easy)
+
+Fix `applyTwo` from lecture slides by adding type for `f` or `call`:
+
+```
+applyTwo :: ([Int], [Bool])
+applyTwo = let call f = (f [2, 1, 3], f [True, False])
+            in call reverse
+```
