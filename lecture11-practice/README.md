@@ -34,6 +34,8 @@ class ArithExpr expr where
 
 Update interpreter and show according to updated DSL.
 
+Solution by Nikita Dugenets: https://gist.github.com/glcanvas/5683494358ae23eb3838fb6a949bc1c2.
+
 ## Task three
 
 Consider Tagless final-based DSL `ArithExpr` from lecture slides.
