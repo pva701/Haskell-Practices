@@ -83,4 +83,4 @@ Implement expression `myExpr` to calculate integral of `cos^3 (x)` in range `[0.
 
 Compare performance of bare Haskell implementation and `interpret myExpr` on large repetetion numbers.
 
-
+Solution by Pavel Golovin: https://gist.github.com/GoPavel/22e54b4d8c752cad8bff54d57d523269.
