@@ -19,6 +19,8 @@ To use following data as type for expression:
 data ArithType = AInt | ABool
 ```
 
+Solution by Lev Dovzhik: https://gist.github.com/Dogzik/b01a4978293fcd84c40b3111e6c249a4
+
 ## Task two
 
 Implement `HList`:
