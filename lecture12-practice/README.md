@@ -89,3 +89,8 @@ data SimpleLam =
 
 Hint: use `Rec` data type to store context of
 variables within lambda you're currently parsing.
+
+
+Full STLC code at 
+https://github.com/pva701/Haskell-Practices/blob/master/etc/STLC.hs.
+
