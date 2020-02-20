@@ -33,6 +33,11 @@ data HList :: [*] -> * where
 
 with `Rec` data type from `vinyl` package.
 
+Solution:
+
+```
+type HList2 = Rec Identity
+```
 
 ## Task three
 
