@@ -26,24 +26,6 @@ foldMap :: (Foldable f, Monoid m) => (a -> m) -> f a -> m
 ```
 
 ### Задание 5
-Реализуйте инстанс `Foldable` для 
-```haskell
-data Tree a 
-  = Leaf a 
-  | Branch (Tree a) a (Tree a)
-```
-через
-```haskell
-foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
-```
-
-### Задание 6
-Реализуйте инстанс `Semigroup` и `Monoid` для
-```haskell
-newtype Endo a = Endo { appEndo :: a -> a }
-```
-
-### Задание 7*
 Реализуйте функцию 
 ```haskell
 foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
@@ -53,20 +35,9 @@ foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
 foldMap :: (Foldable t, Monoid m) => (a -> m) -> t a -> m
 ```
 
-### Задание 8*
-Реализуйте функцию
-```haskell
-secondMax :: Ord a => [a] -> Maybe a
-```
-Которая находит второй по значению максимум
-```haskell
-ghci> secondMax [2, 2, 1, 1, 0, 3, 3]
-Just 2
-```
-
 ## Functor. Applicative. Traversable
 
-### Задание 9
+### Задание 6
 
 Определите инстанс классов `Functor` и `Applicative`  для следующего типа данных, представляющего точку в трёхмерном пространстве:
 ```haskell
@@ -78,7 +49,7 @@ ghci> fmap (+ 1) (Point3D 5 6 7)
 Point3D 6 7 8
 ```
 
-### Задание 10
+### Задание 7
 Определите инстанс классов `Functor` и `Applicative` для бинарного дерева, 
 в каждом узле которого хранятся элементы типа `Maybe`:
 ```haskell
@@ -88,7 +59,7 @@ data Tree a
   deriving Show
 ```
 
-### Задание 11*
+### Задание 8
 Реализуйте операторы
 ```haskell
 (<$) :: Functor f => a -> f b -> f a
@@ -100,7 +71,7 @@ data Tree a
 ```
 Который является `<*>` отбрасывающим первый аргумент.
 
-### Задание 12
+### Задание 9
 Реализуйте инстанс [Traversable](http://hackage.haskell.org/package/base-4.12.0.0/docs/Data-Traversable.html#t:Traversable) для
 ```haskell
 data Tree a 
@@ -108,7 +79,7 @@ data Tree a
   | Branch (Tree a) (Tree a)
 ```
 
-### Задание 13
+### Задание 10
 Реализуйте 
 ```haskell
 traverse :: (Traversable t, Applicative f) => (a -> f b) -> t a -> f (t b)
@@ -118,12 +89,12 @@ traverse :: (Traversable t, Applicative f) => (a -> f b) -> t a -> f (t b)
 sequenceA :: (Traversable t, Applicative f) => t (f a) -> f (t a)
 ```
 
-### Задание 14
+### Задание 11
 Реализуйте `sequenceA` через `traverse`.
 
 ## Phantom types
 
-### Задание 15
+### Задание 12
 У вас есть `newtype`
 ```haskell
 newtype Path a = Path {unPath :: [String]}
@@ -146,12 +117,12 @@ createRel :: String -> Maybe (Path Rel)
 а относительный может начинаться с `./` либо просто с названия папки или файла.
 Название папки или файла - это непустая строка, которая может содержать латинские буквы, цифры и точки
 
-### Задание 16
+### Задание 13
 Реализуйте инстансы `Semigroup` и `Monoid` для `Path` не используя `deriving`.
 А также реализуйте функцию `isSubPath`, которая проверяет что первый переданный путь
 является подпутем второго.
 
-### Задание 17
+### Задание 14
 Реализуйте оператор `</>`, который конкатенирует два пути.
 Имейти ввиду, что два абсолютных пути сконкатенировать нелья.
 Также нельзя добавить к относительному пути абсолютный.
