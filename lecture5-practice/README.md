@@ -1,26 +1,116 @@
-# Lecture 5 practice
+# Practice for Lecture 5
 
-There are three tasks to be implemented in `Parser.hs`.
+Во всех заданиях подразумевается использование монад.
 
-Use `ghci Parser.hs` to type check and load file into ghci.
+## Задание 1
 
-For reference with parser combinator idea,
-one is adviced to check [this presentation](http://slides.com/fp-ctd/lecture-65).
+Рассмотрим игрушечный eDSL:
+```haskell
+data Expr a
+  = Const a
+  | MinusInfinity
+  | PlusInfinity
+  | Add (Expr a) (Expr a)
+  | Sub (Expr a) (Expr a)
+  | Mul (Expr a) (Expr a)
+  | Div (Expr a) (Expr a)
+  | Pow (Expr a) (Expr a)
 
-## Task one
+data ErrMsg
+  = DivisionByZero
+  | ...
+```
 
-Task is simple: rewrite `<*>` of `Parser` with `>>=` from `Monad Maybe`.
+Реализуйте функцию
+```haskell
+evalExpr :: (???) => Expr a -> Either ErrMsg a
+```
 
-## Task two
+## Задание 2
 
-Implement `Alternative Parser` instance.
+Еще один игрушечный eDSL:
+```haskell
+data Expr a
+  = Const a
+  | Var String
+  | Add (Expr a) (Expr a)
+  | Sub (Expr a) (Expr a)
+  | Mul (Expr a) (Expr a)
 
-Implement int list grammar (described in file as Grammar 2).
+type VarMap a = Map String a
+```
 
-Use non-empty int list grammar (Grammar 1 in file) as reference.
+Реализуйте функцию:
+```haskell
+evalExpr :: (???) => Expr a -> VarMap a -> a
+```
 
-## Task three
+В случае, если переменная неопределена, можно кидать ошибку с помощью `error`
 
-Implement `Monad Parser` instance.
+## Задание 3
 
-Implement list of strings grammar (described in file as Grammar 3).
+Больше игрушечных eDSL богу игрушечных eDSL:
+```haskell
+data Expr a
+  = Const a
+  | Add (Expr a) (Expr a)
+  | Sub (Expr a) (Expr a)
+  | Mul (Expr a) (Expr a)
+
+data Statement a
+  = Seq (Statement a) (Statement a)
+  | EvalAndPrint (Expr a)
+  | Log String
+```
+
+Реализуйте функцию:
+```haskell
+evalStatement :: (???) => Statement a -> String
+```
+
+## Задание 4
+
+Реализуйте алгоритм Евклида с логированием
+(для каждого шага алгоритма необходимо сообщить, чему были равны числа,
+для которых считалось GCD).
+
+```haskell
+gcdWithLog :: (???) => a -> a -> ([(a, a)], a)
+```
+
+## Задание 5
+
+Рассмотрим следующие типы:
+```haskell
+data Post = Post { pTitle :: String, pBody :: String }
+
+data Blog = Blog
+  { bPosts   :: [Post]
+  , bCounter :: Int
+  }
+```
+
+Реализуйте инстанс `Monad` для:
+```haskell
+newtype BlogM a = BlogM (Blog -> (a, Blog))
+```
+
+А также функции:
+```haskell
+readPost :: Int -> BlogM Post
+
+newPost :: Post -> BlogM ()
+```
+
+## Задание 6
+
+Докажите законы монад (left/right identity, associativity) для `Writer`.
+
+## Задание 7
+
+Докажите законы монад (left/right identity, associativity) для `Reader`.
+
+## Задание 8
+
+Докажите законы монад (left/right identity, associativity) для `State`.
+
