@@ -50,7 +50,7 @@ newtype StrictNum a = StrictNum a
 10^5 и 10^6 элементов типа `Int`.
 Убедитесь, что время работы операций увеличивается логарифмически, а не полиномиально.
 Используйте подход для измерения времени [отсюда](https://wiki.haskell.org/Timing_computations).
-Убедитесь, что сортировка действительно вызывается: используйте функции [rnf](http://hackage.haskell.org/package/deepseq-1.4.4.0/docs/Control-DeepSeq.html#v:rnf) 
+Убедитесь, что функции действительно выполняются: используйте функции [rnf](http://hackage.haskell.org/package/deepseq-1.4.4.0/docs/Control-DeepSeq.html#v:rnf) 
 и [seq](http://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:seq) для этого.
 
 Опционально, попробуйте соптимизировать внутренний код дерева Фенвика, поэкспериментируйте с boxed/unboxed версиями вектора.
