@@ -101,49 +101,5 @@ sequenceA :: (Traversable t, Applicative f) => t (f a) -> f (t a)
 ### Задание 11
 Реализуйте `sequenceA` через `traverse`.
 
-## Phantom types
-
-### Задание 12
-У вас есть `newtype`
-```haskell
-newtype Path a = Path {unPath :: [String]}
-  deriving Show
-```
-содержащий список компонент пути в файловой системе
-
-Значения фантомного типа `a` могут быть
-```haskell
-data Abs -- для абсолютного пути
-data Rel -- для относительного
-```
-
-Реализуйте следующие функции:
-```haskell
-createAbs :: String -> Maybe (Path Abs)
-createRel :: String -> Maybe (Path Rel)
-```
-Будем считать, что абсолютный путь начинается с `/`, 
-а относительный может начинаться с `./` либо просто с названия папки или файла.
-Название папки или файла - это непустая строка, которая может содержать латинские буквы, цифры и точки
-
-### Задание 13
-Реализуйте инстансы `Semigroup` и `Monoid` для `Path` не используя `deriving`.
-А также реализуйте функцию `isSubPath`, которая проверяет что первый переданный путь
-является подпутем второго.
-
-### Задание 14
-Реализуйте оператор `</>`, который конкатенирует два пути.
-Имейти ввиду, что два абсолютных пути сконкатенировать нелья.
-Также нельзя добавить к относительному пути абсолютный.
-
-```haskell
-ghci> a :: Path Abs = Path ["home", "user", "work"]
-ghci> b :: Path Rel = Path ["github"]
-ghci> c :: Path Rel = Path ["fp-homework"]
-ghci> a </> b
-Path {unPath = ["home","user","work","github"]}
-ghci> b </> c
-Path {unPath = ["github","fp-homework"]}
-```
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com//fp-homework/blob/master/hw1/LICENSE)
