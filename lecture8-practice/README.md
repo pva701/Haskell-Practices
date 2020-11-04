@@ -1,12 +1,15 @@
 # Practice for Lecture 8
 
-В заданиях, где требуется померить производительность, используйте подход для измерения времени [отсюда](https://wiki.haskell.org/Timing_computations).
-Убедитесь, что функции действительно выполняются: используйте функции [rnf](http://hackage.haskell.org/package/deepseq-1.4.4.0/docs/Control-DeepSeq.html#v:rnf) 
+В заданиях, где требуется померить производительность, используйте подход для измерения времени [отсюда](https://wiki.haskell.org/Timing_computations)
+Убедитесь, что функции действительно выполняются: используйте функции [rnf](http://hackage.haskell.org/package/deepseq-1.4.4.0/docs/Control-DeepSeq.html#v:rnf)
 и [seq](http://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:seq) для этого.
+
+В качестве альтернативы вы можете использовать пакет
+[criterion](http://www.serpentine.com/criterion/).
 
 ## Задание 1
 
-Реализуйте функцию 
+Реализуйте функцию
 ```haskell
 fastPow :: Integer -> Int -> Integer
 ```
@@ -14,17 +17,19 @@ fastPow :: Integer -> Int -> Integer
 ```
 {-# LANGUAGE BangPatterns #-}
 ```
-(функция должна реализовывать быстрое возведение в степень).
+(функция должна реализовывать бинарное возведение в степень).
 
-Реализуйте наивное возведение в степень, сравните производительность двух функций.
+Реализуйте также версию без расширения, сравните производительность
+двух функций.
 
 ## Задание 2
-Реализуйте инстанс `NFData` для 
+Реализуйте вручную инстанс `NFData` для
 ```haskell
 data Tree = Node { label :: String, children :: [Tree] }
 ```
 
-Обратите внимание, что вам необходимо будет подключить пакет `deepseq`, для того чтобы использовать `NFData`.
+Обратите внимание, что вам необходимо будет подключить пакет
+`deepseq`, для того чтобы использовать `NFData`.
 
 ## Задание 3
 Вам дан `newtype`
@@ -32,8 +37,13 @@ data Tree = Node { label :: String, children :: [Tree] }
 newtype StrictNum a = StrictNum a
 ```
 
-Реализуйте `instance Num a => Num (StrictNum a)` так чтобы результаты арифметических операций были всегда в головной нормальной форме.
-Сравните время работы `sum` на больших размерах списка для `Int` и `StrictNum Int`.
+Реализуйте `instance (_) => Num (StrictNum a)` так чтобы результаты
+арифметических операций были всегда в головной нормальной
+форме. Заметьте, что необходимые constraint'ы (`(_) =>`) опущены, их
+вам надо заполнить самостоятельно.  Сравните время работы `sum` на
+больших размерах списка для `Int` и `StrictNum Int`.
+
+Результаты могут оказаться неожиданны, будьте готовы их объяснить.
 
 ## Задание 4
 
@@ -48,7 +58,7 @@ newtype StrictNum a = StrictNum a
 * мутабельный unboxed [MVector](http://hackage.haskell.org/package/vector-0.12.0.2/docs/Data-Vector-Unboxed-Mutable.html#t:MVector)
 * [ST](http://hackage.haskell.org/package/base-4.12.0.0/docs/Control-Monad-ST.html#t:ST), [STRef](http://hackage.haskell.org/package/base-4.12.0.0/docs/Data-STRef.html#t:STRef).
 
-Чтобы разобраться с API пакета `vector`, 
+Чтобы разобраться с API пакета `vector`,
 читайте Hackage и/или [этот туториал](https://wiki.haskell.org/Numeric_Haskell:_A_Vector_Tutorial).
 
 ## Задание 5
